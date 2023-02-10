@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SmsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,9 @@ Route::get('/clientlist', function () {
 Route::get('/sendsms', function () {
     return view('sendsms');
 })->middleware(['auth', 'verified'])->name('sendsms');
+
+Route::post('/listsms', [SmsController::class, 'getDataImport']
+)->middleware(['auth', 'verified'])->name('listsms');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
