@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreBlackListRequest;
 use App\Http\Requests\UpdateBlackListRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use App\Models\Log as BLACKLIST_LOG;
 
 class BlackListController extends Controller
@@ -117,5 +118,21 @@ class BlackListController extends Controller
             return redirect('clientlist')->with('status', '500')
                                 ->with('message', 'Ups, Hubo un error al actualizar');
         }
+    }
+
+    public function deleteClientBlacklist($id){
+
+        $result = BlackList::deleteBlacklistClient($id);
+        $data = collect(['id' => $id]);
+        BLACKLIST_LOG::createLog("ELIMINAR",  Auth::id(), $data);
+
+        if($result){
+            return redirect('clientlist')->with('status', '200')
+                                ->with('message', 'Cliente eliminado correctamente');
+        }else {
+            return redirect('clientlist')->with('status', '500')
+                                ->with('message', 'Ups, Hubo un error al eliminar');
+        }
+
     }
 }
