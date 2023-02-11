@@ -22,4 +22,19 @@ class BlackList extends Model
         return $blackList->save();
 
     }
+
+    public static function getClientsBlackList(){
+
+        $clientsBlackList = BlackList::orderByDesc('id')->paginate(8);
+        return $clientsBlackList;
+
+    }
+
+    public static function editPhoneNumber($id,$request){
+        
+        $clientBlackList = BlackList::find($id);
+        $clientBlackList->phone_number = $request->phone_number;
+        return $clientBlackList->save();
+
+    }
 }

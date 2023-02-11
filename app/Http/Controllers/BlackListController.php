@@ -6,6 +6,7 @@ use App\Models\BlackList;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreBlackListRequest;
 use App\Http\Requests\UpdateBlackListRequest;
+use Illuminate\Http\Request;
 use App\Models\Log as BLACKLIST_LOG;
 
 class BlackListController extends Controller
@@ -45,10 +46,10 @@ class BlackListController extends Controller
 
         if($result){
             return redirect('clientlist')->with('status', '200')
-                                ->with('mensaje', 'Cliente Agregado en la Lista Negra Satisfactoriamente');
+                                ->with('message', 'Cliente Agregado en la Lista Negra Satisfactoriamente');
         }else {
             return redirect('clientlist')->with('status', '500')
-                                ->with('status', 'Ups, Hubo un error al agregar el Clente');
+                                ->with('message', 'Ups, Hubo un error al agregar el Clente');
         }
 
     }
@@ -96,5 +97,25 @@ class BlackListController extends Controller
     public function destroy(BlackList $blackList)
     {
         //
+    }
+
+    public function listClientsBlackList (){
+
+        $data = BlackList::getClientsBlackList();
+        return view('clientList',compact('data'));
+    }
+
+    public function editPhoneNumber(Request $request){
+
+        $result = BlackList::editPhoneNumber($request->client_id,$request);
+        BLACKLIST_LOG::createLog("ACTUALIZAR",  Auth::id(), $request);
+
+        if($result){
+            return redirect('clientlist')->with('status', '200')
+                                ->with('message', 'Número de teléfono actulizado correctamente');
+        }else {
+            return redirect('clientlist')->with('status', '500')
+                                ->with('message', 'Ups, Hubo un error al actualizar');
+        }
     }
 }
