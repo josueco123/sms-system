@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('blacklists', function (Blueprint $table) {
             $table->id();
             $table->string('cedula',20);
             $table->string('name',50);
             $table->string('first_last_name',50);
             $table->string('second_last_name',50);
-            $table->string('phone',10);
-            $table->boolean('blakc_list')->nullable();
+            $table->string('phone_number',20);
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('blacklists');
     }
 };
