@@ -24,9 +24,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/clientlist', function () {
-    return view('clientList');
-})->middleware(['auth', 'verified'])->name('clientlist');
+Route::get('/clientlist', [BlackListController::class, 'listClientsBlackList']
+)->middleware(['auth', 'verified'])->name('clientlist');
 
 Route::get('/sendsms', function () {
     return view('sendsms');
@@ -42,6 +41,9 @@ Route::get('/clientform', function () {
 
 Route::post('/clientform', [BlackListController::class, 'store']
 )->middleware(['auth', 'verified'])->name('clientformp');
+
+Route::post('/editphoneclient', [BlackListController::class, 'editPhoneNumber']
+)->middleware(['auth', 'verified'])->name('editphoneclient');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
