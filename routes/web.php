@@ -45,6 +45,9 @@ Route::post('/clientform', [BlackListController::class, 'store']
 Route::post('/editphoneclient', [BlackListController::class, 'editPhoneNumber']
 )->middleware(['auth', 'verified'])->name('editphoneclient');
 
+Route::get('/deleteclient/{id}', [BlackListController::class, 'deleteClientBlacklist']
+)->middleware(['auth', 'verified'])->name('deleteclient');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

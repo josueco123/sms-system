@@ -37,4 +37,10 @@ class BlackList extends Model
         return $clientBlackList->save();
 
     }
+
+    public static function deleteBlacklistClient($id){
+        
+        $clientBlackList = BlackList::find($id);
+        return $clientBlackList->delete();
+    }
 }
