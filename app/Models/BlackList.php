@@ -43,4 +43,14 @@ class BlackList extends Model
         $clientBlackList = BlackList::find($id);
         return $clientBlackList->delete();
     }
+
+    public static function isClientBlacklist($phone){
+        $clientsBlackList = BlackList::where('phone_number', $phone)->first();
+
+        if(empty($clientsBlackList)){
+            return false;
+        }else {
+            return true;
+        }
+    }
 }
