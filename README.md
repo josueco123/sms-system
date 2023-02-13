@@ -59,6 +59,7 @@ Sistema que permita ingresar a los usuarios registrados para gestionar (registra
     ```
 
 ## Ejecutar el aplicativo
+Para correr el aplicativo se deben ejecutar los siguentes commandos:
 
 ```bash
 # server for php
