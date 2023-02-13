@@ -21,7 +21,7 @@ class SmsController extends Controller
         $data = $import->getArray();
 
         list($arraySmsClients ,$arrayBlacklist) = $this->filterData($data);
-        //return view('listsms', compact('arrayBlacklist'));
+        
         return Excel::download(new SmsFilterExport($arraySmsClients), "BD SMS filtrado".date("Y-m-d H:i:s").'.xlsx');
     }
 
@@ -42,4 +42,6 @@ class SmsController extends Controller
         
         return [$arraySmsClients, $arrayBlacklist];
     }
+
+  
 }

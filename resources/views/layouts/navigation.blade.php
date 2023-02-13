@@ -41,7 +41,7 @@
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('sendsms')" :active="request()->routeIs('sendsms')">
-                        Enviar mensajes
+                        Filtrar SMS
                     </x-nav-link>
                 </div>
             </div>

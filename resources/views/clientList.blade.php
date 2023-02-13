@@ -21,6 +21,9 @@
             </button>
         </div>
         @endif
+        @if (count($data) == 0)
+        <h3>No hay clientes registrados en la Lista Negra</h3>
+        @else
     <table class="w-full text-sm text-left text-gray-500 light:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 light:bg-gray-700 light:text-gray-400">
             <tr>
@@ -61,7 +64,7 @@
     </table>
 </div>
 {{ $data->links() }}
-
+@endif
 </div>
         </div>
     </div>    
