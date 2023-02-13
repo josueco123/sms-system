@@ -9,13 +9,18 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\SmsFilterExport;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class SmsController extends Controller
 {
     //
-    public function getDataImport(Request $request) {        
+    public function getDataImport(Request $request) {  
+        $request->validate([
+            'file_input' => 'required|mimes:xls,xlsx'
+          ]);
+
         $file = Storage::putFile('excel_import', $request->file('file_input'));
-        $import = new SmsImport;
+        $import = new SmsImport();
         Excel::import($import, $file);
 
         $data = $import->getArray();
@@ -36,7 +41,10 @@ class SmsController extends Controller
             if(BlackList::isClientBlacklist($client['phone'])){
                 array_push($arrayBlacklist,$client);
             }else{
-                array_push($arraySmsClients,$client);
+                if(is_numeric($client['phone'])){
+                    array_push($arraySmsClients,$client);
+                }
+                
             }
         }
         
