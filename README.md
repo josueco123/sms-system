@@ -45,7 +45,7 @@ Sistema que permita ingresar a los usuarios registrados para gestionar (registra
 
         API_KEY_MAIL={YOUR API KEY MAIL}
         ```
-- Despues se deben instalar las dependencias necesarias para el funconamiento con los siguiente comandos:
+- •	Después se deben instalar las dependencias necesarias para el funcionamiento con el comando:
     ```
     composer install    
     ```
@@ -53,12 +53,13 @@ Sistema que permita ingresar a los usuarios registrados para gestionar (registra
     ```
     php artisan migrate
     ```
-- Al finalizar las migraciones del aplicativo, si desean poblar la base de datos con valores para la tabla de blacklist ejecutar los seeders con el siguiente comando:
+- Al finalizar las migraciones, para poblar la base de datos con valores de prueba para la tabla de blacklist ejecutar los seeders con el siguiente comando:
     ```
     php artisan db:seed --class=BlacklistSeeder
     ```
 
 ## Ejecutar el aplicativo
+Para correr el aplicativo se deben ejecutar los siguientes comandos:
 
 ```bash
 # server for php
